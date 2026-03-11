@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeatherSync — Search Any Location</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=DM+Mono:ital,wght@0,300;0,400;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="wthr.css" />
+</head>
+<body>
+
+  <!-- ── Ambient background blobs ── -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+    <div class="noise-overlay"></div>
+  </div>
+
+  <div class="page-wrap">
+
+    <!-- ── Header ── -->
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-icon">⛅</span>
+        <span class="brand-name">WeatherSync</span>
+      </div>
+      <div class="header-meta">
+        <span class="live-badge">
+          <span class="live-dot"></span>
+          Live Data
+        </span>
+        <span class="api-note">/span>
+      </div>
+    </header>
+
+    <!-- ── Hero text ── -->
+    <section class="hero">
+      <p class="hero-label">Search any city · state · country</p>
+      <h1 class="hero-title">
+        Real-time<br />
+        <em>weather</em>
+      </h1>
+      <p class="hero-sub">
+        "WeatherSync is a smart real-time weather app that syncs live weather data and accurate forecasts, helping users plan their day with confidence.” 🌦️
+      </p>
+    </section>
+
+    <!-- ── Search Bar ── -->
+    <div class="search-section">
+      <form class="search-form" id="searchForm" autocomplete="off">
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search city, state, country… e.g. Ghaziabad, Kerala, Alaska"
+            maxlength="100"
+            aria-label="Search location"
+          />
+          <button type="submit" class="search-btn" id="searchBtn">
+            <span class="search-btn-icon" id="searchBtnIcon">→</span>
+            <span class="search-btn-label">Add</span>
+          </button>
+        </div>
+
+        <!-- Autocomplete dropdown -->
+        <ul class="autocomplete-list" id="autocompleteList" hidden role="listbox" aria-label="Location suggestions"></ul>
+      </form>
+
+      <div class="search-meta-row">
+        <span class="search-hint" id="searchHint">Type to search any location worldwide</span>
+        <div class="controls-right">
+          <button class="refresh-btn" id="refreshBtn" aria-label="Refresh all cards">
+            <span class="refresh-icon" id="refreshIcon">↻</span>
+            <span>Refresh All</span>
+          </button>
+          <button class="clear-btn" id="clearBtn" aria-label="Clear all cards">✕ Clear All</button>
+          <span class="last-updated" id="lastUpdated"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Cards grid ── -->
+    <main class="cards-grid" id="cardsGrid" role="main" aria-live="polite" aria-atomic="false">
+      <!-- Cards injected by JS -->
+    </main>
+
+    <!-- ── Empty state ── -->
+    <div class="empty-state" id="emptyState" hidden>
+      <span class="empty-icon">🌍</span>
+      <p class="empty-title">Search a location to get started</p>
+      <p class="empty-sub">Try "Mumbai", "California", "Germany" or any place worldwide</p>
+    </div>
+
+    <footer class="site-footer">
+      <span>Built with <code>Promise.all()</code> · Open-Meteo Geocoding + Forecast API · Zero key required</span>
+    </footer>
+
+  </div><!-- /page-wrap -->
+
+  <script src="wthr.js"></script>
+</body>
+</html>
