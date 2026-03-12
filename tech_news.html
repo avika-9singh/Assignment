@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech News</title>
+</head>
+<body>
+
+    <h1>Tech News</h1>
+
+    <button onclick="loadNews('AI')">AI</button>
+    <button onclick="loadNews('startup')">Startup</button>
+    <button onclick="loadNews('programming')">Programming</button>
+
+    <div id="result">Loading...</div>
+
+    <script>
+
+        async function loadNews(query) {
+            const url = "https://hn.algolia.com/api/v1/search?query=" + query;
+            const res = await fetch(url);
+            const data = await res.json();
+            showNews(data.hits);
+        }
+
+        function showNews(hits) {
+            let html = '';
+            hits.forEach(function(hit) {
+                const url = hit.url ? hit.url : 'https://news.ycombinator.com/item?id=' + hit.objectID;
+                html += '<h3>' + hit.title + '</h3>';
+                html += '<a href="' + url + '" target="_blank">Read</a>';
+                html += '<hr>';
+            });
+            document.getElementById('result').innerHTML = html;
+        }
+
+        loadNews('startup');
+
+    </script>
+
+</body>
+</html>
